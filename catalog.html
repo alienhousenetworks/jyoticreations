@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wholesale Showroom Suite | Jyoticreations Procurement</title>
+    <style>
+        :root {
+            --primary: #0a0a0a;
+            --accent: #d4af37;
+            --bg-light: #fbfbf9;
+            --text-dark: #1c1a17;
+            --text-light: #6e6b64;
+            --text-muted: #a3a095;
+            --transition-smooth: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: "Didot", "Playfair Display", -apple-system, sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            overflow-x: hidden;
+            padding-top: 140px;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 25px 6%;
+            z-index: 1000;
+            background: rgba(251, 251, 249, 0.95);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(214, 175, 55, 0.1);
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .logo span { color: var(--accent); font-weight: 300; }
+
+        .nav-links { display: flex; list-style: none; gap: 45px; }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            transition: var(--transition-smooth);
+        }
+
+        .nav-links a:hover, .nav-links a.active { color: var(--accent); }
+
+        /* --- STABLE GRID VIEWPORT --- */
+        .catalog-viewport {
+            padding: 60px 6% 120px;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        .catalog-intro-block {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .catalog-intro-block h1 {
+            font-size: 48px;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            font-weight: 300;
+            color: var(--primary);
+        }
+
+        .catalog-intro-block p {
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-size: 12px;
+            margin-top: 15px;
+            font-weight: 600;
+        }
+
+        .stable-commercial-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+        }
+
+        .showroom-card {
+            background: #fff;
+            border: 1px solid rgba(0, 0, 0, 0.04);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.02);
+            cursor: pointer;
+            transition: var(--transition-smooth);
+        }
+
+        .showroom-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 30px 60px rgba(214, 175, 55, 0.12);
+        }
+
+        .media-vault {
+            width: 100%;
+            height: 480px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .abstract-pattern {
+            width: 100%;
+            height: 100%;
+            transition: transform 1s ease;
+        }
+
+        .showroom-card:hover .abstract-pattern { transform: scale(1.05); }
+
+        .pattern-1 { background: linear-gradient(135deg, #5c061e 0%, #1f0108 100%); }
+        .pattern-2 { background: linear-gradient(135deg, #0a332c 0%, #021411 100%); }
+        .pattern-3 { background: linear-gradient(135deg, #422a4c 0%, #170d1c 100%); }
+        .pattern-4 { background: linear-gradient(135deg, #614022 0%, #241405 100%); }
+        .pattern-5 { background: linear-gradient(135deg, #1b365d 0%, #081426 100%); }
+        .pattern-6 { background: linear-gradient(135deg, #3d3d3d 0%, #121212 100%); }
+
+        .vault-badge {
+            position: absolute;
+            top: 25px;
+            left: 25px;
+            background: rgba(10, 10, 10, 0.95);
+            color: #fff;
+            font-size: 9px;
+            padding: 6px 14px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            border: 1px solid var(--accent);
+        }
+
+        .card-footer-identity {
+            padding: 30px;
+            background: #fff;
+            border-top: 1px solid #f9f9f9;
+        }
+
+        .card-footer-identity h3 {
+            font-size: 20px;
+            font-weight: 400;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--primary);
+            margin-bottom: 12px;
+        }
+
+        .spec-trigger-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .spec-trigger-bar span {
+            font-size: 11px;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 600;
+        }
+
+        .spec-trigger-bar .action-link {
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+            border-bottom: 1px solid var(--text-muted);
+            padding-bottom: 2px;
+        }
+
+        /* --- EXPEDITED SPEC OVERLAY WORKSPACE --- */
+        .immersive-spec-workspace {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 600px;
+            height: 100vh;
+            background: #fff;
+            z-index: 2000;
+            box-shadow: -30px 0 90px rgba(0,0,0,0.15);
+            transition: right 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .immersive-spec-workspace.open { right: 0; }
+
+        .workspace-dismiss-action {
+            padding: 40px 50px 20px;
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .close-btn-matrix {
+            background: none; border: none; font-size: 11px;
+            text-transform: uppercase; letter-spacing: 3px;
+            color: var(--text-light); cursor: pointer;
+        }
+
+        .workspace-body-scroll {
+            padding: 20px 50px 50px;
+            flex-grow: 1;
+            overflow-y: auto;
+        }
+
+        .workspace-header-pack h4 {
+            font-size: 12px; text-transform: uppercase;
+            letter-spacing: 4px; color: var(--accent); margin-bottom: 15px;
+        }
+
+        .workspace-header-pack h2 {
+            font-size: 34px; text-transform: uppercase;
+            letter-spacing: 2px; font-weight: 300; color: var(--primary);
+        }
+
+        .fabric-technical-matrix {
+            width: 100%; margin-top: 40px; border-collapse: collapse;
+        }
+
+        .fabric-technical-matrix tr { border-bottom: 1px solid #f0edf6; }
+
+        .fabric-technical-matrix td { padding: 22px 0; font-size: 14px; }
+
+        .fabric-technical-matrix td:first-child {
+            font-size: 11px; text-transform: uppercase;
+            letter-spacing: 2px; color: var(--text-light); width: 35%; font-weight: 600;
+        }
+
+        .workspace-routing-cta-container {
+            padding: 40px 50px; background: #fafaf8; border-top: 1px solid #f0edf6;
+        }
+
+        .whatsapp-routing-engine-trigger {
+            display: flex; align-items: center; justify-content: center;
+            width: 100%; padding: 22px; background: #128C7E; color: #fff;
+            text-decoration: none; font-size: 12px; text-transform: uppercase;
+            letter-spacing: 3px; font-weight: 600; transition: var(--transition-smooth);
+        }
+
+        .whatsapp-routing-engine-trigger:hover {
+            background: #0b665c; transform: translateY(-4px);
+        }
+
+        .workspace-curtain-overlay {
+            position: fixed; inset: 0; background: rgba(10, 10, 10, 0.4);
+            backdrop-filter: blur(8px); z-index: 1999; opacity: 0;
+            pointer-events: none; transition: opacity 0.5s ease;
+        }
+
+        .workspace-curtain-overlay.visible { opacity: 1; pointer-events: auto; }
+
+        @media (max-width: 1200px) {
+            .stable-commercial-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 768px) {
+            .stable-commercial-grid { grid-template-columns: 1fr; }
+            .immersive-spec-workspace { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="workspace-curtain-overlay" id="portalCurtain"></div>
+
+    <nav id="masterNavigation">
+        <a href="index.html" class="logo">Jyoti<span>creations</span></a>
+        <ul class="nav-links">
+            <li><a href="index.html">Home Portfolio</a></li>
+            <li><a href="#" class="active">Wholesale Showroom</a></li>
+        </ul>
+    </nav>
+
+    <main class="catalog-viewport">
+        <div class="catalog-intro-block">
+            <h1>The Complete Wholesale Collection</h1>
+            <p>Direct Weaving Portals • Institutional Quality Protection Assured</p>
+        </div>
+
+        <div class="stable-commercial-grid">
+            <!-- Saree Asset Item 1 -->
+            <div class="showroom-card" onclick="openPortal('Kanjeevaram Silk Imperial', 'Pure Grade Mulberry Silk', 'Double-Warp Pure Metallic Gold Zari', '480 Grams', '45 Units')">
+                <div class="media-vault">
+                    <div class="vault-badge">Handwoven Heritage</div>
+                    <div class="abstract-pattern pattern-1"></div>
+                </div>
+                <div class="card-footer-identity">
+                    <h3>Kanjeevaram Silk Imperial</h3>
+                    <div class="spec-trigger-bar"><span>MOQ: 45 Units</span><div class="action-link">Specifications ⟶</div></div>
+                </div>
+            </div>
+
+            <!-- Saree Asset Item 2 -->
+            <div class="showroom-card" onclick="openPortal('Banarasi Satin Heritage', 'High-Twist Silk Satin Base', 'Resham Hand-Guided Kadwa Border', '540 Grams', '30 Units')">
+                <div class="media-vault">
+                    <div class="vault-badge">Enterprise Class</div>
+                    <div class="abstract-pattern pattern-2"></div>
+                </div>
+                <div class="card-footer-identity">
+                    <h3>Banarasi Satin Heritage</h3>
+                    <div class="spec-trigger-bar"><span>MOQ: 30 Units</span><div class="action-link">Specifications ⟶</div></div>
+                </div>
+            </div>
+
+            <!-- Saree Asset Item 3 -->
+            <div class="showroom-card" onclick="openPortal('Metallic Organza Tissue', 'Translucent Glass Tissue Blends', 'Scalloped Micro-Cutwork Assembly', '190 Grams', '60 Units')">
+                <div class="media-vault">
+                    <div class="vault-badge">Runway Premium</div>
+                    <div class="abstract-pattern pattern-3"></div>
+                </div>
+                <div class="card-footer-identity">
+                    <h3>Metallic Organza Tissue</h3>
+                    <div class="spec-trigger-bar"><span>MOQ: 60 Units</span><div class="action-link">Specifications ⟶</div></div>
+                </div>
+            </div>
+
+            <!-- Saree Asset Item 4 -->
+            <div class="showroom-card" onclick="openPortal('Chanderi Brocade Premium', 'Cotton-Silk Blend Foundation', 'Hand-Stitched Butti Motif Structure', '290 Grams', '50 Units')">
+                <div class="media-vault">
+                    <div class="vault-badge">Lightweight Heritage</div>
+                    <div class="abstract-pattern pattern-4"></div>
+                </div>
+                <div class="card-footer-identity">
+                    <h3>Chanderi Brocade Premium</h3>
+                    <div class="spec-trigger-bar"><span>MOQ: 50 Units</span><div class="action-link">Specifications ⟶</div></div>
+                </div>
+            </div>
+
+            <!-- Saree Asset Item 5 -->
+            <div class="showroom-card" onclick="openPortal('Paithani Royal Silk', 'Fine Filature Thread Weft', 'Oblique Square Pattern Silk Borders', '490 Grams', '25 Units')">
+                <div class="media-vault">
+                    <div class="vault-badge">Maharashtra Heritage</div>
+                    <div class="abstract-pattern pattern-5"></div>
+                </div>
+                <div class="card-footer-identity">
+                    <h3>Paithani Royal Silk</h3>
+                    <div class="spec-trigger-bar"><span>MOQ: 25 Units</span><div class="action-link">Specifications ⟶</div></div>
+                </div>
+            </div>
+
+            <!-- Saree Asset Item 6 -->
+            <div class="showroom-card" onclick="openPortal('Gadhwal Zari Special', 'Compact Twisted Warp Weave', 'High-Density Metallic Weft Border', '380 Grams', '40 Units')">
+                <div class="media-vault">
+                    <div class="vault-badge">Industrial Custom Option</div>
+                    <div class="abstract-pattern pattern-6"></div>
+                </div>
+                <div class="card-footer-identity">
+                    <h3>Gadhwal Zari Special</h3>
+                    <div class="spec-trigger-bar"><span>MOQ: 40 Units</span><div class="action-link">Specifications ⟶</div></div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- DRAWER COMPONENT -->
+    <div class="immersive-spec-workspace" id="luxeDetailPortal">
+        <div class="workspace-dismiss-action">
+            <button class="close-btn-matrix" onclick="closePortal()">✕ Close Matrix</button>
+        </div>
+        <div class="workspace-body-scroll">
+            <div class="workspace-header-pack">
+                <h4>Technical Asset Ledger</h4>
+                <h2 id="portalTargetTitle">Saree Item Profile</h2>
+            </div>
+            <table class="fabric-technical-matrix">
+                <tr><td>Fabric Foundation</td><td id="portalTargetFabric">Processing...</td></tr>
+                <tr><td>Weft Execution</td><td id="portalTargetBorder">Processing...</td></tr>
+                <tr><td>Density Metric</td><td id="portalTargetWeight">Processing...</td></tr>
+                <tr><td>Wholesale Threshold</td><td id="portalTargetMOQ">Processing...</td></tr>
+            </table>
+        </div>
+        <div class="workspace-routing-cta-container">
+            <a href="#" id="portalRoutingAction" target="_blank" class="whatsapp-routing-engine-trigger">
+                Submit Production Matrix Inquiry via WhatsApp
+            </a>
+        </div>
+    </div>
+
+    <script>
+        const detailPortal = document.getElementById('luxeDetailPortal');
+        const portalCurtain = document.getElementById('portalCurtain');
+
+        function openPortal(name, fabric, border, weight, moq) {
+            document.getElementById('portalTargetTitle').innerText = name;
+            document.getElementById('portalTargetFabric').innerText = fabric;
+            document.getElementById('portalTargetBorder').innerText = border;
+            document.getElementById('portalTargetWeight').innerText = weight;
+            document.getElementById('portalTargetMOQ').innerText = moq;
+
+            const structuredMessage = `Hello Jyoticreations Enterprise Team, we are inspecting your digital catalog and wish to request allocation analysis for: [${name}]. Specifications: ${fabric}, Border Details: ${border}, Target Allocation: ${moq}.`;
+            document.getElementById('portalRoutingAction').href = `https://wa.me/919999999999?text=${encodeURIComponent(structuredMessage)}`;
+
+            detailPortal.classList.add('open');
+            portalCurtain.classList.add('visible');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closePortal() {
+            detailPortal.classList.remove('open');
+            portalCurtain.classList.remove('visible');
+            document.body.style.overflow = 'auto';
+        }
+
+        portalCurtain.addEventListener('click', closePortal);
+    </script>
+</body>
+</html>

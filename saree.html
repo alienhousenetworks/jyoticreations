@@ -1,0 +1,1155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jyoticreations | Haute Couture B2B Saree Heritage</title>
+    <style>
+        /* --- DESIGN SYSTEM & LUXURY DESIGN VARIABLES --- */
+        :root {
+            --primary: #0a0a0a;
+            --accent: #d4af37; /* Metallic Premium Burnished Gold */
+            --accent-soft: rgba(212, 175, 55, 0.15);
+            --bg-light: #fbfbf9; /* Museum Off-White */
+            --bg-dark: #111111; /* Onyx Black */
+            --text-dark: #1c1a17;
+            --text-light: #6e6b64;
+            --text-muted: #a3a095;
+            --perspective: 1600px;
+            --transition-smooth: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        /* --- CORE INITIALIZATION & PERFORMANCE OPTIMIZATIONS --- */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: "Didot", "Playfair Display", "Cinzel", -apple-system, sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            overflow-x: hidden;
+            will-change: transform;
+            perspective: var(--perspective);
+        }
+
+        /* Luxury Scrollbar Blueprint */
+        ::-webkit-scrollbar {
+            width: 5px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-light);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--accent);
+            border-radius: 10px;
+        }
+
+        /* --- SMOOTH MOTION INTEGRATION CONTAINER --- */
+        #smooth-scroll-container {
+            width: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+        }
+
+        /* --- NAVIGATION MATRICES --- */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 30px 6%;
+            z-index: 1000;
+            background: rgba(251, 251, 249, 0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(214, 175, 55, 0.1);
+            transition: var(--transition-smooth);
+        }
+
+        nav.scrolled {
+            padding: 18px 6%;
+            background: rgba(251, 251, 249, 0.95);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.02);
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: 700;
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--accent);
+            font-weight: 300;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 45px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-weight: 400;
+            position: relative;
+            padding: 5px 0;
+            transition: var(--transition-smooth);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background-color: var(--accent);
+            transition: var(--transition-smooth);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        /* --- HOMEPAGE HERO HERO SYSTEM --- */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            padding: 0 6%;
+            background: radial-gradient(circle at 80% 20%, #fefefe 0%, var(--bg-light) 100%);
+            overflow: hidden;
+        }
+
+        .hero-waterfall-bg {
+            position: absolute;
+            right: -5%;
+            top: -10%;
+            font-size: 16vw;
+            font-weight: 900;
+            color: rgba(214, 175, 55, 0.04);
+            text-transform: uppercase;
+            letter-spacing: 20px;
+            pointer-events: none;
+            user-select: none;
+            z-index: 1;
+            line-height: 0.8;
+        }
+
+        .hero-container {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            width: 100%;
+            max-width: 1400px;
+            align-items: center;
+            z-index: 2;
+            gap: 50px;
+        }
+
+        .hero-content {
+            opacity: 0;
+            transform: translateY(40px);
+            animation: heroFadeIn 1.2s forwards cubic-bezier(0.16, 1, 0.3, 1) 0.3s;
+        }
+
+        @keyframes heroFadeIn {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .hero-tagline {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            color: var(--accent);
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .hero-content h1 {
+            font-size: 68px;
+            line-height: 1.1;
+            font-weight: 300;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--primary);
+        }
+
+        .hero-content h1 span {
+            font-weight: 800;
+            background: linear-gradient(45deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-content p {
+            color: var(--text-light);
+            font-size: 16px;
+            margin-bottom: 50px;
+            line-height: 1.8;
+            max-width: 520px;
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        .btn-luxury-stack {
+            position: relative;
+            display: inline-block;
+            padding: 20px 50px;
+            background: var(--primary);
+            color: #fff;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            font-size: 11px;
+            font-weight: 600;
+            overflow: hidden;
+            border: 1px solid var(--primary);
+            transition: var(--transition-smooth);
+            z-index: 1;
+        }
+
+        .btn-luxury-stack::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--accent);
+            transition: var(--transition-smooth);
+            z-index: -1;
+        }
+
+        .btn-luxury-stack:hover::before {
+            left: 0;
+        }
+
+        .btn-luxury-stack:hover {
+            color: var(--primary);
+            border-color: var(--accent);
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(214, 175, 55, 0.15);
+        }
+
+        /* --- THE 3D WATERFALL FLOATING VISUAL ASSET --- */
+        .hero-visual {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transform-style: preserve-3d;
+            height: 600px;
+        }
+
+        .silk-waterfall-card {
+            width: 380px;
+            height: 540px;
+            background: linear-gradient(135deg, #2b1118 0%, #120509 100%);
+            position: relative;
+            transform-style: preserve-3d;
+            transform: rotateY(-20deg) rotateX(15deg) translateZ(0);
+            box-shadow: 30px 40px 60px rgba(0,0,0,0.4);
+            border: 1px solid rgba(214, 175, 55, 0.25);
+            transition: transform 0.2s cubic-bezier(0.25, 1, 0.5, 1);
+            overflow: hidden;
+        }
+
+        /* Shimmer Silk Reflection Overlay */
+        .silk-waterfall-card::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(214,175,55,0.15) 0%, transparent 50%, rgba(0,0,0,0.6) 100%);
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        /* Falling wave ripple elements mimicking 3D fabrics */
+        .silk-wave-layer {
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            top: -50%;
+            left: -50%;
+            background: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(214,175,55,0.03) 10px, rgba(214,175,55,0.03) 20px);
+            transform: translateZ(20px) rotate(-10deg);
+            animation: silkFlow 25s infinite linear;
+        }
+
+        @keyframes silkFlow {
+            from { transform: translateZ(20px) translateY(0) rotate(-10deg); }
+            to { transform: translateZ(20px) translateY(50%) rotate(-10deg); }
+        }
+
+        .card-frame {
+            position: absolute;
+            inset: 20px;
+            border: 1px solid var(--accent);
+            transform: translateZ(40px);
+            pointer-events: none;
+            z-index: 3;
+        }
+
+        .card-branding-meta {
+            position: absolute;
+            bottom: 40px;
+            left: 40px;
+            color: #fff;
+            transform: translateZ(60px);
+            z-index: 4;
+        }
+
+        .card-branding-meta h3 {
+            font-size: 24px;
+            font-weight: 300;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: #fff;
+        }
+
+        .card-branding-meta p {
+            font-size: 10px;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-top: 5px;
+        }
+
+        /* --- ADDED HOMEPAGE SECTION 1: HERITAGE LINAGE MATRICES --- */
+        .heritage-brand-story {
+            padding: 160px 6%;
+            background-color: var(--bg-dark);
+            color: #fff;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .story-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            max-width: 1400px;
+            margin: 0 auto;
+            gap: 100px;
+            align-items: center;
+        }
+
+        .story-visual-canvas {
+            position: relative;
+            height: 500px;
+            border-left: 2px solid var(--accent);
+            padding-left: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .story-big-number {
+            font-size: 120px;
+            font-weight: 900;
+            color: rgba(214, 175, 55, 0.08);
+            line-height: 1;
+            position: absolute;
+            top: 20px;
+            left: 40px;
+        }
+
+        .story-visual-canvas h3 {
+            font-size: 32px;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            margin-bottom: 20px;
+            font-weight: 300;
+        }
+
+        .story-visual-canvas h3 b {
+            color: var(--accent);
+        }
+
+        .story-text-block p {
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+            color: #b5b2a9;
+            font-size: 15px;
+            line-height: 1.9;
+            margin-bottom: 30px;
+        }
+
+        /* --- PREMIUM CATALOG COMPONENT VIEWPORT --- */
+        .catalog-container-viewport {
+            padding: 160px 6%;
+            max-width: 1600px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .catalog-section-descriptor {
+            text-align: center;
+            margin-bottom: 100px;
+        }
+
+        .catalog-section-descriptor h2 {
+            font-size: 42px;
+            text-transform: uppercase;
+            letter-spacing: 6px;
+            font-weight: 300;
+            color: var(--primary);
+        }
+
+        .catalog-section-descriptor p {
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            font-size: 11px;
+            margin-top: 15px;
+            font-weight: 600;
+        }
+
+        /* 3D Waterfall Flow Flex Grid Implementation */
+        .waterfall-motion-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 60px;
+            transform-style: preserve-3d;
+        }
+
+        .waterfall-item-wrapper {
+            perspective: var(--perspective);
+            transform-style: preserve-3d;
+            will-change: transform;
+            transition: transform 0.1s ease-out;
+        }
+
+        /* Dynamic staggered offset alignment mimicking waterfall streams */
+        .waterfall-item-wrapper:nth-child(2) {
+            transform: translateY(80px);
+        }
+        .waterfall-item-wrapper:nth-child(3) {
+            transform: translateY(160px);
+        }
+
+        .premium-saree-card {
+            background: #fff;
+            position: relative;
+            transform-style: preserve-3d;
+            border: 1px solid rgba(0, 0, 0, 0.02);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.03);
+            cursor: pointer;
+            transition: box-shadow 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .premium-saree-card:hover {
+            box-shadow: 0 30px 60px rgba(214, 175, 55, 0.12);
+        }
+
+        .saree-media-vault {
+            width: 100%;
+            height: 560px;
+            position: relative;
+            overflow: hidden;
+            background: #f2efea;
+        }
+
+        /* Rich abstract computational textile patterns representing fine threads */
+        .textile-fiber-simulation {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .premium-saree-card:hover .textile-fiber-simulation {
+            transform: scale(1.06);
+        }
+
+        .saree-1 { background: linear-gradient(135deg, #5c061e 0%, #1f0108 100%); }
+        .saree-2 { background: linear-gradient(135deg, #0a332c 0%, #021411 100%); }
+        .saree-3 { background: linear-gradient(135deg, #422a4c 0%, #170d1c 100%); }
+
+        /* Structural overlay texture layers simulating dynamic thread counts */
+        .textile-fiber-simulation::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px),
+                        linear-gradient(0deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+            background-size: 4px 4px;
+        }
+
+        .vault-badge {
+            position: absolute;
+            top: 30px;
+            left: 30px;
+            background: rgba(10, 10, 10, 0.9);
+            color: #fff;
+            font-size: 9px;
+            padding: 6px 16px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            border: 1px solid var(--accent);
+            z-index: 10;
+        }
+
+        .saree-identity-footer {
+            padding: 35px;
+            background: #fff;
+            position: relative;
+            z-index: 5;
+            border-top: 1px solid #f9f9f9;
+        }
+
+        .saree-identity-footer h3 {
+            font-size: 20px;
+            font-weight: 400;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .moq-indicator-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .moq-indicator-bar span {
+            font-size: 11px;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 600;
+        }
+
+        .moq-indicator-bar .action-link {
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+            border-bottom: 1px solid var(--text-muted);
+            padding-bottom: 2px;
+        }
+
+        /* --- IMMERSIVE SINGLE PORTAL CATALOG SPECIFICATION AREA --- */
+        .immersive-spec-workspace {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 650px;
+            height: 100vh;
+            background: #fff;
+            z-index: 2000;
+            box-shadow: -30px 0 90px rgba(0,0,0,0.15);
+            transition: right 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .immersive-spec-workspace.open {
+            right: 0;
+        }
+
+        .workspace-dismiss-action {
+            padding: 40px 50px 20px;
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .close-btn-matrix {
+            background: none;
+            border: none;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--text-light);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: var(--transition-smooth);
+        }
+
+        .close-btn-matrix:hover {
+            color: var(--accent);
+            transform: translateX(-5px);
+        }
+
+        .workspace-body-scroll {
+            padding: 20px 60px 60px;
+            flex-grow: 1;
+            overflow-y: auto;
+        }
+
+        .workspace-header-pack h4 {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: var(--accent);
+            margin-bottom: 15px;
+        }
+
+        .workspace-header-pack h2 {
+            font-size: 38px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 300;
+            line-height: 1.2;
+            color: var(--primary);
+        }
+
+        .fabric-technical-matrix {
+            width: 100%;
+            margin-top: 50px;
+            border-collapse: collapse;
+        }
+
+        .fabric-technical-matrix tr {
+            border-bottom: 1px solid #f0edf6;
+        }
+
+        .fabric-technical-matrix td {
+            padding: 22px 0;
+            font-size: 14px;
+        }
+
+        .fabric-technical-matrix td:first-child {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--text-light);
+            width: 35%;
+            font-weight: 600;
+        }
+
+        .fabric-technical-matrix td:last-child {
+            color: var(--text-dark);
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+        }
+
+        /* High Visibility Premium Global Routing CTA */
+        .workspace-routing-cta-container {
+            padding: 40px 60px;
+            background: #fafaf8;
+            border-top: 1px solid #f0edf6;
+        }
+
+        .whatsapp-routing-engine-trigger {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            padding: 22px;
+            background: #128C7E; /* WhatsApp Pure Corporate Brand Color */
+            color: #fff;
+            text-decoration: none;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-weight: 600;
+            transition: var(--transition-smooth);
+            gap: 12px;
+        }
+
+        .whatsapp-routing-engine-trigger:hover {
+            background: #0b665c;
+            transform: translateY(-4px);
+            box-shadow: 0 15px 30px rgba(18, 140, 126, 0.25);
+        }
+
+        /* --- ADDED HOMEPAGE SECTION 2: GLOBAL EXPORT MATRIX STATISTICS --- */
+        .global-metrics-dashboard {
+            padding: 140px 6%;
+            background-color: #f4f3ef;
+            border-top: 1px solid rgba(0,0,0,0.03);
+        }
+
+        .metrics-grid-system {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            max-width: 1400px;
+            margin: 0 auto;
+            gap: 40px;
+        }
+
+        .metric-cell-card {
+            background: #fff;
+            padding: 50px 40px;
+            border: 1px solid rgba(214,175,55,0.1);
+            text-align: center;
+            transition: var(--transition-smooth);
+        }
+
+        .metric-cell-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent);
+        }
+
+        .metric-cell-card h5 {
+            font-size: 48px;
+            font-weight: 300;
+            color: var(--accent);
+            margin-bottom: 10px;
+            letter-spacing: -1px;
+        }
+
+        .metric-cell-card p {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--text-light);
+            font-weight: 600;
+        }
+
+        /* --- LOGISTICS PLATFORM ARCHITECTURE SECTION --- */
+        .b2b-infrastructure-pipeline {
+            background: var(--primary);
+            color: #fff;
+            padding: 160px 6%;
+            position: relative;
+        }
+
+        .pipeline-wrapper {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .pipeline-grid-layout {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 50px;
+            margin-top: 80px;
+        }
+
+        .pipeline-node {
+            padding: 45px;
+            border: 1px solid rgba(255,255,255,0.05);
+            background: rgba(255,255,255,0.01);
+            transition: var(--transition-smooth);
+        }
+
+        .pipeline-node:hover {
+            background: rgba(255,255,255,0.03);
+            border-color: var(--accent);
+        }
+
+        .pipeline-node .node-index {
+            font-size: 14px;
+            color: var(--accent);
+            font-weight: 700;
+            margin-bottom: 25px;
+            display: block;
+            letter-spacing: 2px;
+        }
+
+        .pipeline-node h4 {
+            font-size: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+            font-weight: 400;
+        }
+
+        .pipeline-node p {
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+            color: #9c9991;
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+        /* Global Workspace Overlay Curtain */
+        .workspace-curtain-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(10, 10, 10, 0.4);
+            backdrop-filter: blur(8px);
+            z-index: 1999;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .workspace-curtain-overlay.visible {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        /* --- APPARATUS RECOVERY MASTER FOOTER --- */
+        footer {
+            background: #050505;
+            color: #555;
+            padding: 60px 6% 40px;
+            text-align: center;
+            border-top: 1px solid rgba(214,175,55,0.05);
+        }
+
+        .footer-legal-notations {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--text-muted);
+        }
+
+        /* --- ADVANCED RESPONSIVE GRID ENGINE --- */
+        @media (max-width: 1200px) {
+            .hero-content h1 { font-size: 52px; }
+            .waterfall-motion-grid { gap: 30px; }
+            .saree-media-vault { height: 440px; }
+        }
+
+        @media (max-width: 992px) {
+            .hero-container { grid-template-columns: 1fr; text-align: center; }
+            .hero-content p { margin-left: auto; margin-right: auto; }
+            .hero-visual { height: 450px; }
+            .silk-waterfall-card { transform: none !important; width: 100%; max-width: 340px; height: 460px; }
+            .story-grid { grid-template-columns: 1fr; gap: 50px; }
+            .waterfall-motion-grid { grid-template-columns: 1fr; }
+            .waterfall-item-wrapper { transform: none !important; }
+            .metrics-grid-system { grid-template-columns: repeat(2, 1fr); }
+            .pipeline-grid-layout { grid-template-columns: 1fr; }
+            .immersive-spec-workspace { width: 100%; right: -100%; }
+        }
+
+        @media (max-width: 576px) {
+            .hero-content h1 { font-size: 38px; }
+            .nav-links { display: none; } /* Enforce sleek mobile navigation configuration */
+            .workspace-body-scroll { padding: 20px 30px 40px; }
+            .workspace-routing-cta-container { padding: 30px; }
+            .metrics-grid-system { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Immersive Workspace Curtain Overlay Asset -->
+    <div class="workspace-curtain-overlay" id="portalCurtain"></div>
+
+    <!-- Smooth Flow Motion Component Layer -->
+    <div id="smooth-scroll-container">
+
+        <!-- Universal Luxury Header Array -->
+        <nav id="masterNavigation">
+            <a href="#" class="logo">Jyoti<span>creations</span></a>
+            <ul class="nav-links">
+                <li><a href="#">Home Portfolio</a></li>
+                <li><a href="#story-node">The Lineage</a></li>
+                <li><a href="#catalog-node">Wholesale Showroom</a></li>
+                <li><a href="#infrastructure-node">Global Logistics</a></li>
+            </ul>
+        </nav>
+
+        <!-- Homepage Section: Strategic Hero Suite -->
+        <section class="hero">
+            <div class="hero-waterfall-bg">Silk</div>
+            <div class="hero-container">
+                <div class="hero-content">
+                    <div class="hero-tagline">B2B Institutional Operations</div>
+                    <h1>Textile Elegance <span>Flowing Unbound</span></h1>
+                    <p>India’s masterwork luxury sarees, systematically calibrated for international high-end boutique acquisition. Completely optimized direct pricing paths, entirely devoid of mid-tier dealer premiums.</p>
+                    <a href="#catalog-node" class="btn-premium btn-luxury-stack">Enter Showroom Suite</a>
+                </div>
+                <div class="hero-visual">
+                    <div class="silk-waterfall-card" id="motionWaterfallHero">
+                        <div class="silk-wave-layer"></div>
+                        <div class="card-frame"></div>
+                        <div class="card-branding-meta">
+                            <h3>Varanasi Archive</h3>
+                            <p>Pure Gold Filament Weft</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Expanded Section 1: The Heritage Loom Lineage -->
+        <section class="heritage-brand-story" id="story-node">
+            <div class="story-grid">
+                <div class="story-visual-canvas">
+                    <div class="story-big-number">1988</div>
+                    <h3>The Continuity of <b>Mastery</b></h3>
+                </div>
+                <div class="story-text-block">
+                    <p>Jyoticreations designs and delivers high-density warp structures for global enterprise accounts. Every product pattern begins inside localized heritage weaving systems, blending master craft traditions with modern multi-layer logistics infrastructure to achieve exact standardization across high-volume production operations.</p>
+                    <p style="color: var(--accent); font-size: 12px; letter-spacing: 2px; text-transform: uppercase; font-weight: 600;">Zero Retail Footprint • Absolute Institutional Focus</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Premium Catalog Layout Grid Viewport -->
+        <section class="catalog-container-viewport" id="catalog-node">
+            <div class="catalog-section-descriptor">
+                <h2>The B2B Wholesale Showroom</h2>
+                <p>Pure Metallic Weft Foundations • Cost Protection Assured</p>
+            </div>
+
+            <!-- Waterfall Motion Architecture Alignment Flex Grid -->
+            <div class="waterfall-motion-grid">
+                
+                <!-- Product Configuration 1 -->
+                <div class="waterfall-item-wrapper" onclick="executeDynamicPortalOpening('Kanjeevaram Silk Imperial', 'Pure Grade Mulberry Silk (Charka Optimized)', 'Double-Warp Pure Metallic Gold Zari Weave', '480 Grams Ultra-Plush Density Grid', '45 Units Baseline Allocation')">
+                    <div class="premium-saree-card">
+                        <div class="saree-media-vault">
+                            <div class="vault-badge">Handwoven Heritage</div>
+                            <div class="textile-fiber-simulation saree-1"></div>
+                        </div>
+                        <div class="saree-identity-footer">
+                            <h3>Kanjeevaram Silk Imperial</h3>
+                            <div class="moq-indicator-bar">
+                                <span>MOQ: 45 Units</span>
+                                <div class="action-link">Inspect Specifications</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product Configuration 2 -->
+                <div class="waterfall-item-wrapper" onclick="executeDynamicPortalOpening('Banarasi Satin Heritage Brocade', 'High-Twist Premium Filament Silk Satin Base', 'Resham Hand-Guided Traditional Kadwa Work Border', '540 Grams Structured Weight Profile', '30 Units Baseline Allocation')">
+                    <div class="premium-saree-card">
+                        <div class="saree-media-vault">
+                            <div class="vault-badge">Bespoke Enterprise Only</div>
+                            <div class="textile-fiber-simulation saree-2"></div>
+                        </div>
+                        <div class="saree-identity-footer">
+                            <h3>Banarasi Satin Heritage</h3>
+                            <div class="moq-indicator-bar">
+                                <span>MOQ: 30 Units</span>
+                                <div class="action-link">Inspect Specifications</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product Configuration 3 -->
+                <div class="waterfall-item-wrapper" onclick="executeDynamicPortalOpening('Metallic Organza Tissue Fine', 'Translucent Glass Tissue and Fine Metallic Blends', 'Scalloped Micro-Cutwork Border Assembly', '190 Grams Featherweight Airy Layout', '60 Units Baseline Allocation')">
+                    <div class="premium-saree-card">
+                        <div class="saree-media-vault">
+                            <div class="vault-badge">Couture Runway Class</div>
+                            <div class="textile-fiber-simulation saree-3"></div>
+                        </div>
+                        <div class="saree-identity-footer">
+                            <h3>Metallic Organza Tissue</h3>
+                            <div class="moq-indicator-bar">
+                                <span>MOQ: 60 Units</span>
+                                <div class="action-link">Inspect Specifications</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Expanded Section 2: Global Sourcing Performance Metrics Dashboard -->
+        <section class="global-metrics-dashboard">
+            <div class="metrics-grid-system">
+                <div class="metric-cell-card">
+                    <h5>14+</h5>
+                    <p>Sovereign Export Markets</p>
+                </div>
+                <div class="metric-cell-card">
+                    <h5>220+</h5>
+                    <p>Dedicated Rural Master Looms</p>
+                </div>
+                <div class="metric-cell-card">
+                    <h5>100%</h5>
+                    <p>Protected Corporate Exclusivity</p>
+                </div>
+                <div class="metric-cell-card">
+                    <h5>4.9</h5>
+                    <p>Institutional Delivery Audit Score</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- B2B Procurement Operations & Logistics Infrastructure Pipeline -->
+        <section class="b2b-infrastructure-pipeline" id="infrastructure-node">
+            <div class="pipeline-wrapper">
+                <div class="catalog-section-descriptor">
+                    <h2 style="color: #fff;">Wholesale Fulfillment Logistics</h2>
+                    <p style="color: var(--accent);">Optimized Institutional Workflows</p>
+                </div>
+
+                <div class="pipeline-grid-layout">
+                    <div class="pipeline-node">
+                        <span class="node-index">STAGE 01</span>
+                        <h4>Dynamic Loom Customization</h4>
+                        <p>Modify structural fabric densities, specify custom border sizes, and establish exclusive corporate colorways directly inside our legacy weaving operations.</p>
+                    </div>
+                    <div class="pipeline-node">
+                        <span class="node-index">STAGE 02</span>
+                        <h4>Customs Clearance Support</h4>
+                        <p>Enjoy comprehensive international export processing with clean bill of lading handoffs and friction-free corporate escrow transaction systems.</p>
+                    </div>
+                    <div class="pipeline-node">
+                        <span class="node-index">STAGE 03</span>
+                        <h4>Neutral White-Label Logistics</h4>
+                        <p>Secure premium, direct-to-warehouse packaging options featuring localized multi-layer moisture barriers and fully customizable product identification tags.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Master Footer Area -->
+        <footer>
+            <p class="footer-legal-notations">&copy; 2026 Jyoticreations Procurement Group Corp. All Industrial Artwork and Design Layout Configurations Reserved.</p>
+        </footer>
+
+    </div>
+
+    <!-- Immersive Single View Product Specification Workspace Canvas -->
+    <div class="immersive-spec-workspace" id="luxeDetailPortal">
+        <div class="workspace-dismiss-action">
+            <button class="close-btn-matrix" onclick="terminateDynamicPortalClose()">✕ Close Workspace</button>
+        </div>
+        <div class="workspace-body-scroll">
+            <div class="workspace-header-pack">
+                <h4>Technical Spec Inventory</h4>
+                <h2 id="portalTargetTitle">Saree Configuration Label</h2>
+            </div>
+
+            <table class="fabric-technical-matrix">
+                <tr>
+                    <td>Fabric System Matrix</td>
+                    <td id="portalTargetFabric">Processing...</td>
+                </tr>
+                <tr>
+                    <td>Border & Weft Micro Details</td>
+                    <td id="portalTargetBorder">Processing...</td>
+                </tr>
+                <tr>
+                    <td>Density Weight Metric</td>
+                    <td id="portalTargetWeight">Processing...</td>
+                </tr>
+                <tr>
+                    <td>Wholesale Order Threshold</td>
+                    <td id="portalTargetMOQ">Processing...</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="workspace-routing-cta-container">
+            <a href="#" id="portalRoutingAction" target="_blank" class="whatsapp-routing-engine-trigger">
+                Route Procurement Quote Request Via WhatsApp
+            </a>
+        </div>
+    </div>
+
+    <!-- --- HIGH PERFORMANCE INTERACTION & SCROLL ENGINE --- -->
+    <script>
+        // Real-Time Smooth Inertial Scroll Parallax System
+        const navigationBar = document.getElementById('masterNavigation');
+        const waterfallCards = document.querySelectorAll('.waterfall-item-wrapper');
+        let currentTargetScrollY = 0;
+        let interpolatedScrollY = 0;
+        const interpolationFactor = 0.08; // Balances lag minimization with silk-like scroll smoothness
+
+        window.addEventListener('scroll', () => {
+            currentTargetScrollY = window.scrollY;
+            
+            // Toggle minimal navigation bar style on scroll down
+            if (currentTargetScrollY > 50) {
+                navigationBar.classList.add('scrolled');
+            } else {
+                navigationBar.classList.remove('scrolled');
+            }
+        });
+
+        function executeWaterfallMotionLoop() {
+            // Apply linear interpolation calculation vectors
+            interpolatedScrollY += (currentTargetScrollY - interpolatedScrollY) * interpolationFactor;
+            
+            // Calculate real-time motion velocity forces
+            const scrollingVelocityForce = currentTargetScrollY - interpolatedScrollY;
+            const dynamicFabricSkew = Math.min(Math.max(scrollingVelocityForce * 0.04, -8), 8); // Structural safety boundary rails
+            const dynamicFabricTranslation = scrollingVelocityForce * 0.2;
+
+            // Apply smooth 3D cascading fabric transforms to catalog items
+            waterfallCards.forEach((card, axisIndex) => {
+                const responsiveOffsetSkew = (axisIndex % 3) * 20; // Natural staggered waterfall layout adjustments
+                if (window.innerWidth > 992) {
+                    card.style.transform = `translate3d(0, ${responsiveOffsetSkew + dynamicFabricTranslation}px, 0) rotateX(${dynamicFabricSkew}deg)`;
+                } else {
+                    card.style.transform = 'none';
+                }
+            });
+
+            requestAnimationFrame(executeWaterfallMotionLoop);
+        }
+        // Initialize high-performance motion loop execution
+        requestAnimationFrame(executeWaterfallMotionLoop);
+
+
+        // 3D Mouse Parallax Tracking Mechanics for Desktop Layouts
+        const interactiveHeroCard = document.getElementById('motionWaterfallHero');
+        if (window.innerWidth > 992) {
+            document.addEventListener('mousemove', (coordinatesEvent) => {
+                const horizontalAxisTilt = (window.innerWidth / 2 - coordinatesEvent.pageX) / 35;
+                const verticalAxisTilt = (window.innerHeight / 2 - coordinatesEvent.pageY) / 35;
+                interactiveHeroCard.style.transform = `rotateY(${horizontalAxisTilt - 20}deg) rotateX(${verticalAxisTilt + 15}deg) translateZ(30px)`;
+            });
+
+            // Return hero card smoothly to baseline skew coordinates on mouse exit
+            document.addEventListener('mouseleave', () => {
+                interactiveHeroCard.style.transform = `rotateY(-20deg) rotateX(15deg) translateZ(0)`;
+                interactiveHeroCard.style.transition = "transform 0.8s cubic-bezier(0.16, 1, 0.3, 1)";
+            });
+            
+            document.addEventListener('mouseenter', () => {
+                interactiveHeroCard.style.transition = "none";
+            });
+        }
+
+
+        // Single-Portal Workspace Controller Engine
+        const detailPortal = document.getElementById('luxeDetailPortal');
+        const portalCurtain = document.getElementById('portalCurtain');
+
+        function executeDynamicPortalOpening(name, fabric, border, weight, moq) {
+            document.getElementById('portalTargetTitle').innerText = name;
+            document.getElementById('portalTargetFabric').innerText = fabric;
+            document.getElementById('portalTargetBorder').innerText = border;
+            document.getElementById('portalTargetWeight').innerText = weight;
+            document.getElementById('portalTargetMOQ').innerText = moq;
+
+            // Construct secure, custom url-encoded enterprise text queries
+            const wholesaleQueryString = `Hello Jyoticreations Enterprise Team, we are reviewing your collection and wish to check production slot availability for [${name}]. Details: ${fabric}, featuring ${border}. Please provide the required paperwork for a opening order volume of ${moq}.`;
+            const secureEncodedPayload = encodeURIComponent(wholesaleQueryString);
+            
+            // Structured international enterprise destination gateway router
+            document.getElementById('portalRoutingAction').href = `https://wa.me/919999999999?text=${secureEncodedPayload}`;
+
+            detailPortal.classList.add('open');
+            portalCurtain.classList.add('visible');
+            document.body.style.overflow = 'hidden'; // Freeze ambient background scroll actions
+        }
+
+        function terminateDynamicPortalClose() {
+            detailPortal.classList.remove('open');
+            portalCurtain.classList.remove('visible');
+            document.body.style.overflow = 'auto'; // Re-enable window layout navigation loops
+        }
+
+        portalCurtain.addEventListener('click', terminateDynamicPortalClose);
+    </script>
+</body>
+</html>
